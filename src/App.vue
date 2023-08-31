@@ -1,11 +1,15 @@
 <template>
-  <Cabecalho v-if="renderizarMenu"></Cabecalho>
-  <router-view></router-view>
-  <Rodape v-if="renderizarMenu"></Rodape>
+  <v-layout>
+      <Cabecalho v-if="renderizarMenu"></Cabecalho>
+    <v-main>
+      <router-view></router-view>
+      <Rodape v-if="renderizarMenu"></Rodape>
+    </v-main>
+  </v-layout>
 </template>
 <script>
 import Rodape from "./components/Rodape/RodapeView.vue"
-import Cabecalho from "./components/Cabecalho/CabelhoView.vue"
+import Cabecalho from "./components/Cabecalho/CabecalhoView.vue"
 export default {
   components: {
     Rodape,
@@ -18,3 +22,4 @@ export default {
   }
 }
 </script>
+
