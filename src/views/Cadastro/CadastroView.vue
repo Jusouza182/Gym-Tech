@@ -1,7 +1,7 @@
 <template>
     <v-container id="corpo" class="bg-blue-lighten-4 elevation-5">
         <h2>Crie sua conta</h2>
-        <v-form @submit.prevent class="d-flex flex-column" id="form">
+        <v-form @submit.prevent>
             <v-text-field variant="outlined" bg-color="#fff" label="Nome completo"
                 placeholder="Digite seu nome completo"></v-text-field>
             <v-text-field variant="outlined" bg-color="#fff" label="E-mail" placeholder="Digite seu e-mail"></v-text-field>
@@ -34,13 +34,14 @@ export default {
     height: 600px;
     margin-top: 4%;
 }
-
 h2 {
     display: flex;
     justify-content: center;
-    margin: 25px
+    margin: 20px;
+    
 }
 #botao{
 margin-right: 15px;
+margin-bottom: 25px;
 }
 </style>
