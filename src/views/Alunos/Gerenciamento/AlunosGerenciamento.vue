@@ -7,7 +7,7 @@
     <v-form class="d-flex" style="width: 60%; margin: 2% auto;" @submit.prevent>
         <v-text-field variant="outlined" v-model="aluno" label="Pesquisar aluno"
             placeholder="Digite o nome do aluno"></v-text-field>
-        <v-btn type="submit" class="bg-blue-lighten-3" height="50px"
+        <v-btn type="submit" variant="outlined" class="bg-blue" height="50px"
             style="margin-left: 2%; margin-top: 0.5%;">Pesquisar</v-btn>
     </v-form>
     <v-table fixed-header style="width: 60%; margin: 0 auto;" height="300px">
