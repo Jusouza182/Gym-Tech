@@ -1,14 +1,19 @@
 <template>
-    <div class="d-flex align-center" style="margin: 2% 10%; margin-bottom: 0.5%;">
-        <v-icon icon="mdi-account-multiple" size="60"></v-icon>
-        <h2>Alunos</h2>
+    <div class="d-flex align-center justify-space-between" style="margin: 2% 11%; margin-bottom: 0.5%; margin-right: 15%;">
+        <div class="d-flex align-center" >
+            <v-icon icon="mdi-account-multiple" size="60"></v-icon>
+            <h2>Alunos</h2>
+        </div>
+        <div> 
+            <router-link to="/alunos/novo" ><v-btn class="bg-blue ">Cadastrar</v-btn></router-link>
+        </div>
     </div>
     <v-divider :thickness="2" class="border-opacity-70" width="80%" style="margin: 0 auto;"></v-divider>
     <v-form class="d-flex" style="width: 60%; margin: 2% auto;" @submit.prevent>
         <v-text-field variant="outlined" v-model="aluno" label="Pesquisar aluno"
             placeholder="Digite o nome do aluno"></v-text-field>
-        <v-btn type="submit" variant="outlined" class="bg-blue" height="50px"
-            style="margin-left: 2%; margin-top: 0.5%;">Pesquisar</v-btn>
+        <v-btn type="submit"  class="bg-blue" height="40px"
+            style="margin-left: 2%; margin-top: 0.8%;">Pesquisar</v-btn>
     </v-form>
     <v-table fixed-header style="width: 60%; margin: 0 auto;" height="300px">
         <thead>
