@@ -45,7 +45,11 @@ export default {
 
             try {
                 await axios.post('http://localhost:3000/sessions', login)
-                    .then(() => {
+                    .then((response) => {
+                        localStorage.setItem('login_name', response.data.name)
+                        localStorage.setItem('login_token', response.data.token)
+
+
                         this.$router.push("/dashboard")
                     })
                     .catch(() => {
