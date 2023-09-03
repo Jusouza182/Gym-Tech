@@ -26,9 +26,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr
-            v-for="item in alunos" :key="item.id">
-                <td>{{ alunos.name }}</td>
+            <tr v-for="item in alunos" :key="item.id">
+                <td>{{ item.name }}</td>
 
                 <td>
                     <router-link to="/treinos/novo" style="margin-right: 5px;"><v-btn class="bg-blue-lighten-3">Montar
@@ -51,32 +50,30 @@ export default {
         }
     },
     mounted() {
-        axios.get("http://localhost:3000/students")
-            .then(res => {this.alunos = res.data
-                console.log(res.data)
-                console.log(this.alunos.name)
-            } )
-              
-            
-            .catch(error => console.log(error))
+        this.todosAlunos()
+
     },
     methods: {
         pesquisar() {
-            this.alunos = this.alunos.filter((item) =>{
+            this.alunos = this.alunos.filter((item) => {
                 return item.name === this.pesquisa
             })
             this.$refs.form.reset()
-            this.todosAlunos()
            
-        }, 
+            
 
-        todosAlunos(){
+        },
+
+        todosAlunos() {
             axios.get("http://localhost:3000/students")
-            .then(res => this.alunos = res.data)
-            .catch(error => console.log(error))
+                .then(({data}) => {
+                    this.alunos = data.students
+
+                })
+                .catch(error => console.log(error))
         }
     }
 
-    
+
 }
 </script>
