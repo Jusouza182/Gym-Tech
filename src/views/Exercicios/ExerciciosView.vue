@@ -52,6 +52,7 @@ export default {
                 .then(() => {
                     this.$refs.form.reset()
                     alert('Cadastrado com sucesso')
+                    this.carregarExercicio()
                 })
                 .catch(()=>{
                    alert("Não foi possivel cadastrar")
@@ -62,6 +63,11 @@ export default {
             }
 
 
+        },
+        carregarExercicio(){
+            axios.get("http://localhost:3000/exercises")
+            .then(res => this.exercicios = res.data)
+            .catch(error => console.log(error))
         }
     }
 }
