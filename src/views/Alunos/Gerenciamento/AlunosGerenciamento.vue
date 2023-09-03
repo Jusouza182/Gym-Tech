@@ -55,20 +55,23 @@ export default {
     },
     methods: {
         pesquisar() {
-            this.alunos = this.alunos.filter((item) => {
-                return item.name === this.pesquisa
-            })
-            this.$refs.form.reset()
-           
-            
+            if (this.pesquisa) {
+                const resultadosPesquisa = this.alunos.filter((item) => {
+                    return item.name.toLowerCase().includes(this.pesquisa.toLowerCase());
+                    
+                });
+                this.alunos = resultadosPesquisa 
+            } else {
+                this.todosAlunos();
+                
+            }
 
+            this.pesquisa = '';
         },
-
         todosAlunos() {
             axios.get("http://localhost:3000/students")
-                .then(({data}) => {
+                .then(({ data }) => {
                     this.alunos = data.students
-
                 })
                 .catch(error => console.log(error))
         }
