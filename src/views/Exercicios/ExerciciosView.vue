@@ -4,7 +4,7 @@
         <h2>Exercícios</h2>
     </div>
     <v-divider :thickness="2" class="border-opacity-70" width="80%" style="margin: 0 auto;"></v-divider>
-    
+
     <v-form class="d-flex" style="width: 60%; margin: 2% auto;" @submit.prevent="cadastrar" ref="form">
         <v-text-field variant="outlined" v-model="description" label="Novo Exercício"
             placeholder="Digite um novo exercício"></v-text-field>
@@ -42,14 +42,15 @@ export default {
 
     },
     methods: {
-        async cadastrar() {
-            this.$refs.form.reset()
+         cadastrar() {
+            
             const novoExercicio ={
              description: this.description
             } 
             try {
-                await axios.post("http://localhost:3000/exercises", novoExercicio)
+                 axios.post("http://localhost:3000/exercises", novoExercicio)
                 .then(() => {
+                    this.$refs.form.reset()
                     alert('Cadastrado com sucesso')
                 })
                 .catch(()=>{
