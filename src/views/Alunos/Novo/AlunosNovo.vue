@@ -6,8 +6,8 @@
     <v-divider :thickness="2" class="border-opacity-70" width="80%" style="margin: 0 auto;"></v-divider>
 
     <v-card class="elevation-0">
-        <v-form @submit.prevent="cadastrar" style="width: 80%; margin: 0 auto;" ref="form">
-
+        <v-form @submit.prevent="cadastrar" style="width: 80%; margin: 0 auto; margin-bottom: 50px;" ref="form">
+            {{ data.logradouro }}
             <div style="width: 80%; margin: 02% auto;">
 
                 <div class="d-flex" style="gap:10px; margin-bottom: 12px;">
@@ -16,7 +16,7 @@
                         :rules="[rules.required]"></v-text-field>
 
                     <v-text-field variant="outlined" v-model="email" label="E-mail" placeholder="Digite o e-mail"
-                        type="email" style="width: 10%" :rules="[rules.email, rules.required]"></v-text-field>
+                        type="email" style="width: 10%" :rules="[rules.email]"></v-text-field>
                 </div>
 
                 <div class="d-flex" style="gap:10px; margin-bottom: 12px;">
@@ -24,18 +24,21 @@
                         placeholder="Digite o telefone para contato" type="number" style="width: 10%"
                         :rules="[rules.required]"></v-text-field>
 
-                    <v-text-field variant="outlined" v-model="dataNasimento" label="Data de nascimento"
-                        placeholder="Digite a data de nascimento" type="date" style="width: 10%"
-                        :rules="[rules.required]"></v-text-field>
+                    <VueDatePicker v-model="dataNasimento" :max-date="new Date()" cancelText="cancelar"
+                        selectText="Selecionar" :enable-time-picker="false"
+                        placeholder="Digite a data de nascimento" 
+                         :format="format" style="width: 50%;"></VueDatePicker>
+
+                         
                 </div>
 
                 <div class="d-flex" style="gap:10px; margin-bottom: 12px;">
 
-                    <v-text-field variant="outlined" v-model="CEP" label="CEP" placeholder="Digite o CEP" type="number"
-                        style="width: 4%" :rules="[rules.required]"></v-text-field>
+                    <v-text-field variant="outlined" v-model="cep" label="CEP" placeholder="Digite o CEP" type="number"
+                        style="width: 4%" :rules="[rules.required]" @change="consultarCep()"></v-text-field>
 
-                    <v-text-field variant="outlined" v-model="numero" label="Número" placeholder="Digite o número" type="number"
-                        style="width: 2%" :rules="[rules.required]"></v-text-field>
+                    <v-text-field variant="outlined" v-model="numero" label="Número" placeholder="Digite o número"
+                        type="number" style="width: 2%" :rules="[rules.required]"></v-text-field>
 
                     <v-text-field variant="outlined" v-model="logradouro" label="Logradouro"
                         placeholder="Digite o logradouro" type="text" style="width: 35%"
@@ -66,6 +69,7 @@
 </template>
 <script>
 import axios from "axios"
+import moment from 'moment'
 export default {
     data() {
         return {
@@ -73,7 +77,7 @@ export default {
             email: '',
             contato: '',
             dataNasimento: '',
-            CEP: '',
+            cep: '',
             logradouro: '',
             estado: '',
             bairro: '',
@@ -83,30 +87,36 @@ export default {
             rules: {
                 required: value => !!value || '*Campo obrigatório',
                 email: value => {
-                    const confirmaEmail =
+                    if(value){
+                        const confirmaEmail =
                         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                     return confirmaEmail.test(value) || '*E-mail inválido'
+                    }
+                    
                 }
-            }
+            },
+
+            data: {}
         }
 
     },
     methods: {
         async cadastrar() {
-            
+
             const { valid } = await this.$refs.form.validate()
-            
+
             if (!valid) {
-                
+
                 return
             }
+            let dataFormatada = moment(this.dataNasimento).format("DD/MM/YYYY")
 
             const cadastro = {
                 name: this.nome,
                 email: this.email,
                 contact: this.contato,
-                date_birth: this.dataNasimento,
-                cep: this.CEP,
+                date_birth: dataFormatada,
+                cep: this.cep,
                 street: this.logradouro,
                 number: this.numero,
                 neighborhood: this.bairro,
@@ -130,10 +140,26 @@ export default {
             }
 
 
+        }, consultarCep() {
+            axios.get(`https://viacep.com.br/ws/${this.cep}/json/`)
+                .then(({ data }) => {
+                    this.logradouro = data.logradouro;
+                    this.cidade = data.localidade;
+                    this.estado = data.uf;
+                    this.bairro = data.bairro;
+                })
+                .catch((error) => {
+                    alert(error)
+                })
         },
-        teste(){
-            console.log("Cheguei aqui")
+        format(date){
+            const day = date.getDate();
+            const month = date.getMonth();
+            const year = date.getYear();
+
+            return `${day}/${month}/${year}`;
         }
+
     },
 }
 </script>
