@@ -26,7 +26,7 @@
                    
                         <VueDatePicker locale="pt-BR" v-model="dataNasimento" :max-date="new Date()" cancelText="cancelar"
                             selectText="Selecionar" :enable-time-picker="false" placeholder="Digite a data de nascimento"
-                            :format="format" style="width: 50%;"  ></VueDatePicker>
+                            :format="format" style="width: 50%;" ></VueDatePicker>
                     
                 </div>
 
@@ -162,3 +162,9 @@ export default {
     },
 }
 </script>
+<style >
+ .dp__input{
+height: 55px;
+border: 1px solid black;
+}
+</style>
