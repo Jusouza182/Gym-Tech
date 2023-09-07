@@ -5,11 +5,13 @@
     </v-card>
     <v-divider :thickness="2" class="border-opacity-70" width="80%" style="margin: 0 auto;"></v-divider>
     <v-card class="elevation-0">
-        <v-form @submit.prevent style="width: 80%; margin: 0 auto;">
+        <v-form @submit.prevent="cadastrar()" style="width: 80%; margin: 0 auto;" ref="form">
+
             <div style="width: 80%; margin: 02% auto;">
 
                 <v-select variant="outlined" v-model="nomeExercicio" label="Qual o exercicio?"
-                    placeholder="Selecione um exercicio" :rules="[rules.required]"></v-select>
+                    placeholder="Selecione um exercicio" :items="exercicios" item-title="description" item-value="id"
+                    :rules="[rules.required]"></v-select>
 
                 <div class="d-flex" style="gap:10px">
                     <v-text-field variant="outlined" v-model="repeticoes" label="Repetições"
@@ -30,7 +32,7 @@
 
                 <v-card-actions class="d-flex justify-end">
                     <v-btn class="bg-blue-lighten-3" width="150" height="40">Cancelar</v-btn>
-                    <v-btn class="bg-blue" width="150" height="40">Cadastrar</v-btn>
+                    <v-btn class="bg-blue" width="150" height="40" type="submit">Cadastrar</v-btn>
                 </v-card-actions>
             </div>
 
@@ -38,16 +40,22 @@
     </v-card>
 </template>
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
-            nomeExercicio: '',
+            student_id:this.$route.params.id,
+            nomeExercicio: null,
             repeticoes: 1,
             peso: '',
             pausa: '',
-            dia: new Date().getDay(),
+            dia: '',
             observacoes: '',
             item: [
+                {
+                    title: 'Domingo',
+                    value: 'domingo'
+                },
                 {
                     title: 'Segunda-feira',
                     value: 'segunda'
@@ -72,16 +80,74 @@ export default {
                     title: 'Sábado',
                     value: 'sabado'
                 },
-                {
-                    title: 'Domingo',
-                    value: 'domingo'
-                },
+
             ],
             rules: {
                 required: value => !!value || 'Campo obrigatório'
-            }
+            },
+            exercicios: [],
+            itemExercicio: []
+
         }
-    }, 
+    },
+
+    methods: {
+        diaDaSemana() {
+            const diaAtual = new Date().getDay()
+            return this.item[diaAtual].value
+        },
+
+        async cadastrar() {
+            const { valid } = await this.$refs.form.validate()
+
+            if (!valid) {
+                return
+            }
+
+            const cadastro = {
+                student_id: this.student_id,
+                exercise_id: this.exercicios.id,
+                repetitions: this.repeticoes,
+                weight: this.peso,
+                break_time: this.pausa,
+                observations: this.observacoes,
+                day: this.dia
+
+
+            }
+            this.$refs.form.reset()
+
+            try {
+                await axios.post('http://localhost:3000/workouts', cadastro)
+                    .then(() => {
+                        alert("Cadastrado com sucesso")
+
+                    })
+                    .catch(() => {
+                        alert("Não foi possível cadastrar")
+                    })
+            } catch (error) {
+                console.log(error)
+            }
+
+
+        }
+    },
+
+    mounted() {
+        axios.get('http://localhost:3000/exercises')
+            .then(({ data }) => {
+                this.exercicios = data
+
+                console.log(this.exercicios)
+            })
+            .catch((error) => {
+                alert(error)
+            })
+
+
+        this.dia = this.diaDaSemana()
+    }
 }
 
 </script>
