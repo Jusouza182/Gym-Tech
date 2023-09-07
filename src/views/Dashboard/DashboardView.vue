@@ -42,7 +42,9 @@ return{
     mounted(){
         axios.get('http://localhost:3000/dashboard')
         .then (res => this.dashbordInfo = res.data)
-        .catch () 
+        .catch(() => {
+                        alert("Não foi possível carregar")
+                    })
             
         this.userName = (localStorage.getItem('login_name'))
     }
