@@ -21,7 +21,7 @@
     flex-direction:column;
     align-items: center;
     margin: 0 auto;
-    margin-top: 60px;
+    
     padding: 0;
 }
 h6{
