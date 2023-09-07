@@ -44,13 +44,17 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            nomeExercicio: '',
+            nomeExercicio: null,
             repeticoes: 1,
             peso: '',
             pausa: '',
-            dia: new Date().getDay(),
+            dia: '',
             observacoes: '',
             item: [
+                {
+                    title: 'Domingo',
+                    value: 'domingo'
+                },
                 {
                     title: 'Segunda-feira',
                     value: 'segunda'
@@ -75,10 +79,7 @@ export default {
                     title: 'Sábado',
                     value: 'sabado'
                 },
-                {
-                    title: 'Domingo',
-                    value: 'domingo'
-                },
+
             ],
             rules: {
                 required: value => !!value || 'Campo obrigatório'
@@ -87,7 +88,14 @@ export default {
             itemExercicio: []
 
         }
-    }, methods: {
+    },
+
+    methods: {
+        diaDaSemana() {
+            const diaAtual = new Date().getDay()
+            return this.item[diaAtual].value
+        },
+
         async cadastrar() {
             const { valid } = await this.$refs.form.validate()
 
@@ -123,7 +131,9 @@ export default {
 
 
         }
-    }, mounted() {
+    },
+
+    mounted() {
         axios.get('http://localhost:3000/exercises')
             .then(({ data }) => {
                 this.exercicios = data
@@ -133,6 +143,9 @@ export default {
             .catch((error) => {
                 alert(error)
             })
+
+
+        this.dia = this.diaDaSemana()
     }
 }
 
