@@ -104,11 +104,10 @@ export default {
                 return
             }
 
-            const selecionarExercicio = this.exercicios.find(exercicio => exercicio.id === this.nomeExercicio)
 
             const cadastro = {
                 student_id: this.student_id,
-                exercise_id: selecionarExercicio.id,
+                exercise_id: this.nomeExercicio,
                 repetitions: this.repeticoes,
                 weight: this.peso,
                 break_time: this.pausa,
