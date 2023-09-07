@@ -5,11 +5,13 @@
     </v-card>
     <v-divider :thickness="2" class="border-opacity-70" width="80%" style="margin: 0 auto;"></v-divider>
     <v-card class="elevation-0">
-        <v-form @submit.prevent="cadastrar()" style="width: 80%; margin: 0 auto;">
+        <v-form @submit.prevent="cadastrar()" style="width: 80%; margin: 0 auto;" ref="form">
+
             <div style="width: 80%; margin: 02% auto;">
 
                 <v-select variant="outlined" v-model="nomeExercicio" label="Qual o exercicio?"
-                    placeholder="Selecione um exercicio" :title="exercicios.descriptiom" :rules="[rules.required]"></v-select>
+                    placeholder="Selecione um exercicio" :items="exercicios" item-title="description" item-value="id"
+                    :rules="[rules.required]"></v-select>
 
                 <div class="d-flex" style="gap:10px">
                     <v-text-field variant="outlined" v-model="repeticoes" label="Repetições"
@@ -81,7 +83,9 @@ export default {
             rules: {
                 required: value => !!value || 'Campo obrigatório'
             },
-            exercicios:{},
+            exercicios: [],
+            itemExercicio: []
+
         }
     }, methods: {
         async cadastrar() {
@@ -108,7 +112,7 @@ export default {
                 await axios.post('http://localhost:3000/workouts', cadastro)
                     .then(() => {
                         alert("Cadastrado com sucesso")
-                        
+
                     })
                     .catch(() => {
                         alert("Não foi possível cadastrar")
@@ -120,10 +124,11 @@ export default {
 
         }
     }, mounted() {
-        axios.get('http://localhost:3000/workouts')
-            .then(({data}) => {
-                this.exercicios = data.workouts
-                console.log(data.workouts)
+        axios.get('http://localhost:3000/exercises')
+            .then(({ data }) => {
+                this.exercicios = data
+
+                console.log(this.exercicios)
             })
             .catch((error) => {
                 alert(error)
