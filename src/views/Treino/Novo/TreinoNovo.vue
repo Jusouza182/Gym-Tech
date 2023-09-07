@@ -44,6 +44,7 @@ import axios from 'axios'
 export default {
     data() {
         return {
+            student_id:this.$route.params.id,
             nomeExercicio: null,
             repeticoes: 1,
             peso: '',
@@ -104,7 +105,7 @@ export default {
             }
 
             const cadastro = {
-                student_id: '',
+                student_id: this.student_id,
                 exercise_id: this.exercicios.id,
                 repetitions: this.repeticoes,
                 weight: this.peso,
