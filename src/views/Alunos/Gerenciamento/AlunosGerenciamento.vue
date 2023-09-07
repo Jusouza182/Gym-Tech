@@ -30,9 +30,8 @@
                 <td>{{ item.name }}</td>
 
                 <td>
-                    <router-link to="/treinos/novo" style="margin-right: 5px;"><v-btn class="bg-blue-lighten-3">Montar
-                            treino</v-btn></router-link>
-                    <router-link to="/treino"><v-btn class="bg-blue-lighten-3">Ver</v-btn></router-link>
+                    <v-btn style="margin-right: 5px;" class="bg-blue-lighten-3" @click="() => montarTreinos(item.id)">Montar treino</v-btn>
+                    <v-btn class="bg-blue-lighten-3" @click="() => gerenciarTreinos(item.id)">Ver</v-btn>
                 </td>
             </tr>
 
@@ -58,12 +57,12 @@ export default {
             if (this.pesquisa) {
                 const resultadosPesquisa = this.alunos.filter((item) => {
                     return item.name.toLowerCase().includes(this.pesquisa.toLowerCase());
-                    
+
                 });
-                this.alunos = resultadosPesquisa 
+                this.alunos = resultadosPesquisa
             } else {
                 this.todosAlunos();
-                
+
             }
 
             this.pesquisa = '';
@@ -72,9 +71,16 @@ export default {
             axios.get("http://localhost:3000/students")
                 .then(({ data }) => {
                     this.alunos = data.students
+                    console.log(this.alunos)
                 })
                 .catch(error => console.log(error))
-        }
+        }, 
+        montarTreinos(id){
+            this.$router.push(`/treinos/${id}/novo`)
+        },
+        gerenciarTreinos(id){
+            this.$router.push(`/treinos/${id}`)
+        },
     }
 
 
