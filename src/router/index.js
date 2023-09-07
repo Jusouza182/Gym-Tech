@@ -41,12 +41,12 @@ const router = createRouter({
       component: Exercicios
     },
     {
-      path: '/treinos/novo',
+      path: '/treinos/:id/novo',
       name: 'novo treino',
       component: TreinoNovo
     },
     {
-      path: '/treino',
+      path: '/treino/:id',
       name: 'treino',
       component: TreinoVizualizacao
     }
