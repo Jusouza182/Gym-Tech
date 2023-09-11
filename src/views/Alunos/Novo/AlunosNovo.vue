@@ -24,11 +24,14 @@
                         placeholder="Digite o telefone para contato" type="number" style="width: 10%"
                         :rules="[rules.required]"></v-text-field>
 
-                        <VueDatePicker locale="pt-BR" v-model="dataNasimento" :max-date="new Date()" cancelText="cancelar"
-                            selectText="Selecionar" :enable-time-picker="false" placeholder="Digite a data de nascimento"
-                            :format="format" style="width: 50%;" ></VueDatePicker>
 
-                         
+                    <VueDatePicker locale="pt-BR" v-model="dataNasimento" :max-date="new Date()" cancelText="cancelar"
+                        selectText="Selecionar" :enable-time-picker="false" placeholder="Digite a data de nascimento"
+                        :format="format" style="width: 50%;"></VueDatePicker>
+
+
+
+
                 </div>
 
                 <div class="d-flex" style="gap:10px; margin-bottom: 12px;">
@@ -75,7 +78,7 @@ export default {
             nome: '',
             email: '',
             contato: '',
-            dataNasimento: '',
+            dataNasimento: new Date(),
             cep: '',
             logradouro: '',
             estado: '',
@@ -86,12 +89,12 @@ export default {
             rules: {
                 required: value => !!value || '*Campo obrigatório',
                 email: value => {
-                    if(value){
+                    if (value) {
                         const confirmaEmail =
-                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    return confirmaEmail.test(value) || '*E-mail inválido'
+                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        return confirmaEmail.test(value) || '*E-mail inválido'
                     }
-                    
+
                 }
             },
 
@@ -151,10 +154,11 @@ export default {
                     alert(error)
                 })
         },
-        format(date){
+        format(date) {
+
             const day = date.getDate();
-            const month = date.getMonth();
-            const year = date.getYear();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
 
             return `${day}/${month}/${year}`;
         }
@@ -162,3 +166,9 @@ export default {
     },
 }
 </script>
+<style >
+.dp__input {
+    height: 55px;
+    border: 1px solid black;
+}
+</style>
