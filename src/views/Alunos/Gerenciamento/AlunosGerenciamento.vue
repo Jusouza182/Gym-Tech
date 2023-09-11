@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="item in alunos" :key="item.id">
+            <tr v-for="item in alunosPesquisado" :key="item.id">
                 <td>{{ item.name }}</td>
 
                 <td>
@@ -54,23 +54,21 @@ export default {
     },
     methods: {
         pesquisar() {
-            if (this.pesquisa) {
-                const resultadosPesquisa = this.alunos.filter((item) => {
-                    return item.name.toLowerCase().includes(this.pesquisa.toLowerCase());
 
-                });
-                this.alunos = resultadosPesquisa
-            } else {
-                this.todosAlunos();
-
-            }
-
-            this.pesquisa = '';
+        if (this.pesquisa) {
+            const resultadosPesquisa = this.alunos.filter((item) => {
+                return item.name.toLowerCase().includes(this.pesquisa.toLowerCase());
+            });
+            this.alunosPesquisado = resultadosPesquisa; 
+        } else {
+            this.todosAlunos();
+        }
         },
         todosAlunos() {
             axios.get("http://localhost:3000/students")
                 .then(({ data }) => {
                     this.alunos = data.students
+                    this.alunosPesquisado = data.students
                     console.log(this.alunos)
                 })
                 .catch(error => console.log(error))
