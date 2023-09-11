@@ -24,10 +24,9 @@
                         placeholder="Digite o telefone para contato" type="number" style="width: 10%"
                         :rules="[rules.required]"></v-text-field>
 
-                    <VueDatePicker v-model="dataNasimento" :max-date="new Date()" cancelText="cancelar"
-                        selectText="Selecionar" :enable-time-picker="false"
-                        placeholder="Digite a data de nascimento" 
-                         :format="format" style="width: 50%;"></VueDatePicker>
+                        <VueDatePicker locale="pt-BR" v-model="dataNasimento" :max-date="new Date()" cancelText="cancelar"
+                            selectText="Selecionar" :enable-time-picker="false" placeholder="Digite a data de nascimento"
+                            :format="format" style="width: 50%;" ></VueDatePicker>
 
                          
                 </div>
