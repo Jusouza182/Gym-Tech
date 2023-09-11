@@ -104,9 +104,11 @@ export default {
                 return
             }
 
+            const selecionarExercicio = this.exercicios.find(exercicio => exercicio.id === this.nomeExercicio)
+
             const cadastro = {
                 student_id: this.student_id,
-                exercise_id: this.exercicios.id,
+                exercise_id: selecionarExercicio.id,
                 repetitions: this.repeticoes,
                 weight: this.peso,
                 break_time: this.pausa,
@@ -115,20 +117,20 @@ export default {
 
 
             }
-            this.$refs.form.reset()
+            
 
-            try {
+            
                 await axios.post('http://localhost:3000/workouts', cadastro)
                     .then(() => {
+                        
                         alert("Cadastrado com sucesso")
-
+                        this.$refs.form.reset()
                     })
                     .catch(() => {
+                        console.log(this.exercise_id)
                         alert("Não foi possível cadastrar")
                     })
-            } catch (error) {
-                console.log(error)
-            }
+            
 
 
         }
