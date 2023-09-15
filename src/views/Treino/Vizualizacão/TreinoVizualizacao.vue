@@ -60,6 +60,7 @@
   </v-card>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data: () => ({
       tab: null,
@@ -73,6 +74,24 @@
       treinosDom: [],
 
     }),
-   
+    mounted(){
+        axios.get(`http://localhost:3000//workouts?student_id=${this.studentId}`)
+        .then(({ data }) => {
+                this.treinos = data.workouts;
+                this.treinosSeg = data.workouts.segunda;
+                this.treinosTer = data.workouts.terca;
+                this.treinosQua = data.workouts.quarta;
+                this.treinosQui = data.workouts.quinta;
+                this.treinosSex = data.workouts.sexta;
+                this.treinosSab = data.workouts.sabado;
+                this.treinosDom = data.workouts.domingo;
+
+                console.log(this.treinos)
+
+            })
+            .catch((error) => {
+                alert(error)
+            })
+    }
   }
 </script>
