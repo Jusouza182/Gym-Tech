@@ -1,12 +1,44 @@
 <template>
     <v-card class="d-flex align-center elevation-0" style="margin: 2% 10%; margin-bottom: 0;">
         <v-icon icon="mdi-weight-lifter" size="60"></v-icon>
-        <h2>Treinos - nome aluno</h2>
+        <h2>Treinos - {{ name }}</h2>
     </v-card>
     <v-divider :thickness="2" class="border-opacity-50" width="80%" style="margin: 0 auto;"></v-divider>
     <v-card class="border-opacity-50" width="80%" style="margin: 50px auto;">
-        <h1> Hoje</h1>
-        <p> Exercicios do dia</p>
+        <h1>Hoje</h1>
+        <v-table>
+            <thead>
+                <tr>
+                    <th>
+                        <b>Check</b>
+
+                    </th>
+                    <th class="text-left">
+                        <b>Exercicio</b>
+                    </th>
+                    <th class="text-left">
+                        <b>Peso(kg)</b>
+                    </th>
+                    <th class="text-left">
+                        <b>Repetições</b>
+                    </th>
+                    <th class="text-left">
+                        <b>Pausa (s)</b>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in exerciciosHoje" :key="item.id">
+                    <td><v-checkbox @click="feito(item)" v-model="checkbox"></v-checkbox></td>
+                    <td>{{ item.exercise_description }}</td>
+                    <td>{{ item.weight }}</td>
+                    <td>{{ item.repetitions }}</td>
+                    <td>{{ item.break_time }}</td>
+                </tr>
+
+            </tbody>
+        </v-table>
+
     </v-card>
 
 
@@ -46,7 +78,7 @@
                                 <td>{{ item.exercise_description }}</td>
                                 <td>{{ item.weight }}</td>
                                 <td>{{ item.repetitions }}</td>
-                                <td>{{item.break_time }}</td>
+                                <td>{{ item.break_time }}</td>
                             </tr>
 
                         </tbody>
@@ -76,7 +108,7 @@
                                 <td>{{ item.exercise_description }}</td>
                                 <td>{{ item.weight }}</td>
                                 <td>{{ item.repetitions }}</td>
-                                <td>{{item.break_time }}</td>
+                                <td>{{ item.break_time }}</td>
                             </tr>
 
                         </tbody>
@@ -106,7 +138,7 @@
                                 <td>{{ item.exercise_description }}</td>
                                 <td>{{ item.weight }}</td>
                                 <td>{{ item.repetitions }}</td>
-                                <td>{{item.break_time }}</td>
+                                <td>{{ item.break_time }}</td>
                             </tr>
 
                         </tbody>
@@ -136,7 +168,7 @@
                                 <td>{{ item.exercise_description }}</td>
                                 <td>{{ item.weight }}</td>
                                 <td>{{ item.repetitions }}</td>
-                                <td>{{item.break_time }}</td>
+                                <td>{{ item.break_time }}</td>
                             </tr>
 
                         </tbody>
@@ -166,7 +198,7 @@
                                 <td>{{ item.exercise_description }}</td>
                                 <td>{{ item.weight }}</td>
                                 <td>{{ item.repetitions }}</td>
-                                <td>{{item.break_time }}</td>
+                                <td>{{ item.break_time }}</td>
                             </tr>
 
                         </tbody>
@@ -197,7 +229,7 @@
                                 <td>{{ item.exercise_description }}</td>
                                 <td>{{ item.weight }}</td>
                                 <td>{{ item.repetitions }}</td>
-                                <td>{{item.break_time }}</td>
+                                <td>{{ item.break_time }}</td>
                             </tr>
 
                         </tbody>
@@ -227,7 +259,7 @@
                                 <td>{{ item.exercise_description }}</td>
                                 <td>{{ item.weight }}</td>
                                 <td>{{ item.repetitions }}</td>
-                                <td>{{item.break_time }}</td>
+                                <td>{{ item.break_time }}</td>
                             </tr>
 
                         </tbody>
@@ -238,7 +270,8 @@
     </v-card>
 </template>
 <script>
-import axios from 'axios'
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -251,12 +284,27 @@ export default {
             treinosSex: [],
             treinosSab: [],
             treinosDom: [],
-            student_id: this.$route.params.id
+            student_id: this.$route.params.id,
+            name: this.$route.params.name,
+            currentDay: '',
+            exerciciosHoje: [],
+            checkbox: [],
         }
 
 
     },
+    watch: {
+        checkbox(item) {
+            this.feito(item)
+        }
+    },
+
     mounted() {
+
+        const daysOfWeek = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
+        const todayIndex = new Date().getDay();
+        this.currentDay = daysOfWeek[todayIndex];
+
         axios.get(`http://localhost:3000/workouts?student_id=${this.student_id}`)
             .then(({ data }) => {
                 this.treinos = data.workouts;
@@ -268,15 +316,28 @@ export default {
                 this.treinosSab = this.treinos.filter(data => data.day === 'sabado');
                 this.treinosDom = this.treinos.filter(data => data.day === 'domingo');
 
-
-                console.log(data)
-                console.log(this.treinos)
-                console.log(this.treinosDom)
-
+                this.exerciciosHoje = this.treinos.filter(data => data.day === this.currentDay);
             })
             .catch((error) => {
                 alert(error)
             })
+    },
+    methods: {
+        feito(item) {
+            const data = {
+                workout_id: item.id,
+                student_id: this.student_id,
+                day_of_week: this.currentDay
+            }
+
+            axios.post('http://localhost:3000/workouts/check', data)
+                .then(() => {
+                    console.log('Exercício marcado com sucesso!');
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
     }
 }
 </script>

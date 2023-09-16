@@ -74,7 +74,7 @@ export default {
                 .catch(error => console.log(error))
         }, 
         montarTreinos(id,name){
-            this.$router.push(`/treinos/${id}/${name}novo`)
+            this.$router.push(`/treinos/${id}/${name}/novo`)
         },
         gerenciarTreinos(id,name){
             this.$router.push(`/treino/${id}/${name}`)
