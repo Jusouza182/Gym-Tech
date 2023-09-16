@@ -77,7 +77,7 @@ export default {
             this.$router.push(`/treinos/${id}/novo`)
         },
         gerenciarTreinos(id){
-            this.$router.push(`/treinos/${id}`)
+            this.$router.push(`/treino/${id}`)
         },
     }
 
