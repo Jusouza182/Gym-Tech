@@ -30,8 +30,8 @@
                 <td>{{ item.name }}</td>
 
                 <td>
-                    <v-btn style="margin-right: 5px;" class="bg-blue-lighten-3" @click="() => montarTreinos(item.id)">Montar treino</v-btn>
-                    <v-btn class="bg-blue-lighten-3" @click="() => gerenciarTreinos(item.id)">Ver</v-btn>
+                    <v-btn style="margin-right: 5px;" class="bg-blue-lighten-3" @click="() => montarTreinos(item.id, item.name)">Montar treino</v-btn>
+                    <v-btn class="bg-blue-lighten-3" @click="() => gerenciarTreinos(item.id, item.name)">Ver</v-btn>
                 </td>
             </tr>
 
@@ -73,11 +73,11 @@ export default {
                 })
                 .catch(error => console.log(error))
         }, 
-        montarTreinos(id){
-            this.$router.push(`/treinos/${id}/novo`)
+        montarTreinos(id,name){
+            this.$router.push(`/treinos/${id}/${name}/novo`)
         },
-        gerenciarTreinos(id){
-            this.$router.push(`/treinos/${id}`)
+        gerenciarTreinos(id,name){
+            this.$router.push(`/treino/${id}/${name}`)
         },
     }
 
