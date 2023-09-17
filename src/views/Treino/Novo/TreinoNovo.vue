@@ -31,7 +31,7 @@
                     v-model="observacoes"> </v-textarea>
 
                 <v-card-actions class="d-flex justify-end">
-                    <v-btn class="bg-blue-lighten-3" width="150" height="40">Cancelar</v-btn>
+                    <v-btn class="bg-blue-lighten-3" width="150" height="40" @click="reset()">Cancelar</v-btn>
                     <v-btn class="bg-blue" width="150" height="40" type="submit">Cadastrar</v-btn>
                 </v-card-actions>
             </div>
@@ -132,7 +132,10 @@ export default {
             
 
 
-        }
+        },
+        reset () {
+        this.$refs.form.reset()
+      }
     },
 
     mounted() {
