@@ -1,36 +1,41 @@
-Nome do Software: 
-Descrição do Problema Resolvido
 
+# GymTech
 
-Técnicas e Tecnologias Utilizadas
-O aplicativo foi desenvolvido utilizando as seguintes tecnologias:
+O GymTech é um aplicativo desenvolvido para auxiliar os instrutores de uma academia a  gerenciar os seus alunos, montar e gerenciar treinos. 
+Com uma interface intuitiva e eficiente, o aplicativo permite aos profissionais disponibilizar, de forma ágil, os treinos semanais completos para seus alunos, promovendo uma experiência de treinamento mais eficaz e personalizada.
+## Linguagens utilizadas
 
-Linguagem de Programação:
-Framework Web: 
-Banco de Dados: SQLite
-Frontend: HTML, CSS, JavaScript
+<div>
+<img alt="html5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img alt="ccs" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<img alt="javascript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<img alt="vue.js" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D">
+</div>
 
+## Como executar
 
-Como Executar
-Para executar o aplicativo em sua máquina local, siga as etapas abaixo:
-```sh
+1- Clone este repositório:
+
+```bash
+git clone github.com/Jusouza182/FitManageTech
+
+```
+2- Instale o node_modules    
+
+```bash
 npm install
+
 ```
 
-### Compile and Hot-Reload for Development
+3- Rode o projeto   
 
-```sh
+```bash
 npm run dev
+
 ```
 
-### Compile and Minify for Production
+## Melhorias futuras
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+ * Adicionar a fução de adicionar e deletar alunos, exercicios e treinos. 
+ * Melhora na interface, deixando a aplicativo mais bonito e moderno. 
+ * Atualização do código para ficar mais limpo. 
