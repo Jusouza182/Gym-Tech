@@ -12,6 +12,13 @@ Com uma interface intuitiva e eficiente, o aplicativo permite aos profissionais 
 <img alt="vue.js" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D">
 </div>
 
+## Telas
+
+Ao acessar o aplicativo, o usuário é direcionado para a página de login. 
+
+<img alt="tela de login" src="https://uploaddeimagens.com.br/imagens/Ihp72Gw">
+
+
 ## Como executar
 
 1- Clone este repositório:
