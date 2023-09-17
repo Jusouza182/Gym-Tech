@@ -19,7 +19,7 @@ Quando o usuário acessa o aplicativo, ele é imediatamente redirecionado para a
 </br>
 
 <div style="display: flex;"> 
-<img alt="tela de login" src="https://uploaddeimagens.com.br/images/004/610/300/full/Captura_de_tela_2023-09-17_095101.png?1694955071" style="width: 405px; heigth: 570px;">
+<img alt="tela de login" src="https://uploaddeimagens.com.br/images/004/610/300/full/Captura_de_tela_2023-09-17_095101.png?1694955071" style="width: 405px; heigth: 573px;">
 
 <img alt="tela de cadastro" src="https://uploaddeimagens.com.br/images/004/610/304/full/Captura_de_tela_2023-09-17_095532.png?1694955334" style="width: 400px; heigth: 570px;">
 
@@ -61,6 +61,13 @@ Além de conseguir acessar a lista de alunos, é póssivel através da página d
 <img alt="tela de cadastro de treino" src="https://uploaddeimagens.com.br/images/004/610/410/full/Captura_de_tela_2023-09-17_142003.png?1694971217">
 
 <img alt="tela de treinos" src="https://uploaddeimagens.com.br/images/004/610/411/full/Captura_de_tela_2023-09-17_142206.png?1694971334">
+
+</br>
+
+## Link vídeo explicativo 
+</br>
+
+<a href='https://drive.google.com/file/d/1vQJ1SCeIwPdo-zJhMY35c9nf4uiHoZHC/view?usp=drive_link'> Clique aqui </a> para acessar o vídeo do projeto
 
 </br>
 
