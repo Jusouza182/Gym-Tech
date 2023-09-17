@@ -19,7 +19,7 @@ Quando o usuário acessa o aplicativo, ele é imediatamente redirecionado para a
 </br>
 
 <div style="display: flex;"> 
-<img alt="tela de login" src="https://uploaddeimagens.com.br/images/004/610/300/full/Captura_de_tela_2023-09-17_095101.png?1694955071" style="width: 405px">
+<img alt="tela de login" src="https://uploaddeimagens.com.br/images/004/610/300/full/Captura_de_tela_2023-09-17_095101.png?1694955071" style="width: 405px; heigth: 570px;">
 
 <img alt="tela de cadastro" src="https://uploaddeimagens.com.br/images/004/610/304/full/Captura_de_tela_2023-09-17_095532.png?1694955334" style="width: 400px; heigth: 570px;">
 
