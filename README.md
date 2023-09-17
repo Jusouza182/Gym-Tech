@@ -1,17 +1,18 @@
-# fit_manage_tech
+Nome do Software: 
+Descrição do Problema Resolvido
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+Técnicas e Tecnologias Utilizadas
+O aplicativo foi desenvolvido utilizando as seguintes tecnologias:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Linguagem de Programação:
+Framework Web: 
+Banco de Dados: SQLite
+Frontend: HTML, CSS, JavaScript
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+Como Executar
+Para executar o aplicativo em sua máquina local, siga as etapas abaixo:
 ```sh
 npm install
 ```
