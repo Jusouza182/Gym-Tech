@@ -16,7 +16,7 @@
                         :rules="[rules.required]"></v-text-field>
 
                     <v-text-field variant="outlined" v-model="email" label="E-mail" placeholder="Digite o e-mail"
-                        type="email" style="width: 10%" :rules="[rules.email]"></v-text-field>
+                        type="email" style="width: 10%" :rules="[rules.email, rules.required]"></v-text-field>
                 </div>
 
                 <div class="d-flex" style="gap:10px; margin-bottom: 12px;">
@@ -135,8 +135,8 @@ export default {
                         alert("Cadastrado com sucesso")
 
                     })
-                    .catch((error) => {
-                        alert(error)
+                    .catch(() => {
+                        alert("Erro ao cadastrar")
                     })
             } catch (error) {
                 console.log(error)
