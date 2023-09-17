@@ -64,6 +64,13 @@ Além de conseguir acessar a lista de alunos, é póssivel através da página d
 
 </br>
 
+## Link vídeo explicativo 
+</br>
+
+<a href='https://drive.google.com/file/d/1vQJ1SCeIwPdo-zJhMY35c9nf4uiHoZHC/view?usp=drive_link'> Clique aqui </a> para acessar o vídeo do projeto
+
+</br>
+
 ## Como executar
 
 1- Clone este repositório:
