@@ -7,7 +7,7 @@
 
     <v-form class="d-flex" style="width: 60%; margin: 2% auto;" @submit.prevent="cadastrar" ref="form">
         <v-text-field variant="outlined" v-model="description" label="Novo Exercício"
-            placeholder="Digite um novo exercício"></v-text-field>
+            placeholder="Digite um novo exercício"  :rules="[v => !!v || 'O nome do exercício é obrigatório']"></v-text-field>
         <v-btn type="submit"  class="bg-blue" height="40px"
             style="margin-left: 2%; margin-top: 0.8%;">Cadastrar</v-btn>
     </v-form>
