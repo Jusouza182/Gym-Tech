@@ -15,12 +15,12 @@
 
                 <div class="d-flex" style="gap:10px">
                     <v-text-field variant="outlined" v-model="repeticoes" label="Repetições"
-                        placeholder="Digite a quantidade de repetições" type="text" style="width: 10%"></v-text-field>
+                        placeholder="Digite a quantidade de repetições" type="number" style="width: 10%" :rules="[rules.required]"></v-text-field>
 
                     <v-text-field variant="outlined" v-model="peso" label="Peso" placeholder="Digite o peso" type="number"
                         style="width: 10%" :rules="[rules.required]"></v-text-field>
 
-                    <v-text-field variant="outlined" v-model="pausa" label="Pausa" placeholder="Digite o tempo de pausa"
+                    <v-text-field variant="outlined" v-model="pausa" label="Pausa (s)" placeholder="Digite o tempo de pausa"
                         type="time" style="width: 10%" :rules="[rules.required]"></v-text-field>
                 </div>
 
