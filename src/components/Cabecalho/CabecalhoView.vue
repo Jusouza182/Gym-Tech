@@ -1,6 +1,6 @@
 <template>
         <v-app-bar scroll-behavior="collapse" scroll-threshold="10" elevation="5" color="blue-darken-4" rounded>
-            <v-app-bar-title>Fit Manage Tech</v-app-bar-title>
+            <v-app-bar-title style="font-size: 30px;">GymTech</v-app-bar-title>
             <v-container class=" d-flex justify-end">
                 <router-link class="rota" to="/dashboard">Home</router-link>
                 <router-link class="rota" to="/alunos">Alunos</router-link>
